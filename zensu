@@ -8,7 +8,14 @@ else
 	PASSWD="$(zenity --password --title =Authentication)"
 fi
 
-if ! [ -z "$PASSWD" ] && ! [ $dialog_pressed_label='cancel' ]; then
+if [ "$dialog_pressed_label" = 'cancel' ]; then
+	echo "triggered cancel" 
+	exit 
+elif [ -z "$PASSWD" ]; then
+	echo "triggered empty"
+	exit
+else
+	echo triggered PW
 	echo "$PASSWD" | sudo -S "$@"
 fi
 
