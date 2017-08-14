@@ -1,0 +1,25 @@
+#!/bin/sh
+if [ -e /usr/bin/spacefm ]; then
+	eval "`spacefm -g --label "Authentication needed for $USER" --hbox --icon dialog-password-symbolic.symbolic --password --button cancel --button ok --title Spacesu`"
+	PASSWD="$dialog_password1"
+elif [ -e /usr/bin/yad ]; then
+	PASSWD="$(yad --entry --entry-label "Password" --hide-text --image=dialog-password-symbolic.symbolic --text="Authentication needed for $USER" --title=spacesu --center)"
+else
+	PASSWD="$(zenity --password --title =Authentication)"
+fi
+
+if ! [ -z "$PASSWD" ] && ! [ $dialog_pressed_label='cancel' ]; then
+	echo "$PASSWD" | sudo -S "$@"
+fi
+
+if [ $? = 1 ]; then 
+	if [ -e /usr/bin/spacefm ]; then
+		eval "`spacefm -g --label "Wrong password, retry" --hbox --icon dialog-password-symbolic.symbolic --password --button cancel --button ok --title Spacesu`"
+		PASSWD="$dialog_password1"
+	elif [ -e /usr/bin/yad ]; then
+		PASSWD="$(yad --entry --entry-label "Password" --hide-text --image=dialog-password-symbolic.symbolic --text="Wrong password, retry" --title=spacesu --center)"
+	else
+		PASSWD="$(zenity --password --title="Wrong password, retry")"
+	fi
+	echo "$PASSWD" | sudo -S "$@"
+fi
