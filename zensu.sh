@@ -26,7 +26,7 @@ if [ $? = 1 ]; then
 		eval "`spacefm -g --label "Wrong password, retry" --hbox --icon dialog-error --password --window-icon=dialog-password --button cancel --button ok --title Authentication`"
 		PASSWD="$dialog_password1"
 	elif [ -e /usr/bin/kdialog ]; then
-		PASSWD=$(kdialog --title "Authentication" --password "Authentication required for $USER")
+		PASSWD=$(kdialog --title "Wrong password, retry" --password "Authentication required for $USER")
 	elif [ -e /usr/bin/yad ]; then
 		PASSWD="$(yad --entry --entry-label "Password" --hide-text --image=dialog-error --window-icon=dialog-password --text="Wrong password, retry" --title=Authentication --center)"
 	else
