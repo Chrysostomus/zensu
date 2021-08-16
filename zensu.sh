@@ -9,7 +9,7 @@ elif [ -e /usr/bin/yad ]; then
 elif [ -e /usr/bin/zenity ] then;
 	PASSWD="$(zenity --password --title =Authentication)"
 else
-	echo "Dependincy not available.\n Please install at least one of: spacefm, kdialog, yad, zenity"
+	echo "Dependency not available.\n Please install at least one of: spacefm, kdialog, yad, zenity"
 fi
 
 if [ "$dialog_pressed_label" = 'cancel' ]; then
