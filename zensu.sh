@@ -6,8 +6,8 @@ elif [ -e /usr/bin/kdialog ]; then
 	PASSWD=$(kdialog --title "Authentication" --password "Authentication required for $USER")
 elif [ -e /usr/bin/yad ]; then
 	PASSWD="$(yad --entry --entry-label "Password" --hide-text --image=password --window-icon=dialog-password --text="Authentication required for $USER" --title=Authentication --center)"
-elif [ -e /usr/bin/zenity ] then;
-	PASSWD="$(zenity --password --title =Authentication)"
+elif [ -e /usr/bin/zenity ]; then
+	PASSWD="$(zenity --password --title Authentication)"
 else
 	echo "Dependency not available.\n Please install at least one of: spacefm, kdialog, yad, zenity"
 fi
