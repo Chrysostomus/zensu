@@ -1,4 +1,4 @@
-PREFIX_BIN ?= /usr/local/bin
+PREFIX_BIN ?= /usr/bin
 
 .PHONY: all
 all:
