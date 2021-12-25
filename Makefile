@@ -6,6 +6,7 @@ all:
 
 .PHONY: install
 install:
+	chmod +x zensu.sh
 	cp ./zensu.sh $(PREFIX_BIN)/zensu
 
 .PHONY: uninstall
