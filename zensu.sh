@@ -1,4 +1,10 @@
 #!/bin/sh
+
+if sudo -nv 2>/dev/null; then
+    sudo "$@"
+    exit $?
+fi
+
 if [ -e /usr/bin/kdialog ]; then
 	PASSWD=$(kdialog --title "Authentication" --password "Authentication required for $USER")
 elif [ -e /usr/bin/yad ]; then
